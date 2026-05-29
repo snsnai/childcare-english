@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>保育英語プラットフォーム</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #FF8FAB;
+    --primary-light: #FFD6E0;
+    --primary-dark: #E05C80;
+    --secondary: #7EC8E3;
+    --secondary-light: #D4EEF7;
+    --accent: #FFD166;
+    --accent-light: #FFF3C4;
+    --green: #06D6A0;
+    --green-light: #CCFAED;
+    --purple: #9B72CF;
+    --purple-light: #E8DCFA;
+    --bg: #FFF9FB;
+    --bg2: #FFF0F5;
+    --text: #3D2B35;
+    --text2: #7A5F6A;
+    --text3: #A98FA0;
+    --white: #FFFFFF;
+    --border: #F0D5E0;
+    --shadow: 0 4px 20px rgba(255,143,171,0.15);
+    --shadow-hover: 0 8px 30px rgba(255,143,171,0.25);
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--white);
+    border-bottom: 2px solid var(--primary-light);
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(255,143,171,0.1);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--primary-dark);
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+  nav { display: flex; gap: 4px; }
+  nav a {
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text2);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  nav a:hover, nav a.active {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+
+  /* ===== SECTIONS ===== */
+  .section { display: none; padding: 2rem; max-width: 1200px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* ===== HERO ===== */
+  #home.active { display: block; }
+  .hero {
+    background: linear-gradient(135deg, #FFF0F5 0%, #F5F0FF 50%, #F0F8FF 100%);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 2px solid var(--border);
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--primary-dark);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .hero h1 span { color: var(--secondary); }
+  .hero p {
+    font-size: 1.05rem;
+    color: var(--text2);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .hero-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-align: center;
+  }
+  .hero-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary);
+  }
+  .hero-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .hero-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+  .hero-card p { font-size: 0.78rem; color: var(--text3); line-height: 1.5; }
+
+  /* ===== SECTION HEADER ===== */
+  .sec-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .sec-header h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-dark);
+  }
+  .sec-header p { font-size: 0.9rem; color: var(--text2); margin-top: 0.2rem; }
+
+  /* ===== DICTIONARY ===== */
+  .dict-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .dict-controls input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .dict-controls input:focus { border-color: var(--primary); }
+  .cat-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .cat-tab {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--white);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text2);
+  }
+  .cat-tab.active, .cat-tab:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--white);
+  }
+  .dict-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+  .dict-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    transition: all 0.2s;
+  }
+  .dict-card:hover { box-shadow: var(--shadow); border-color: var(--primary-light); }
+  .dict-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.6rem;
+  }
+  .dict-word { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+  .dict-phonetic { font-size: 0.78rem; color: var(--text3); margin-top: 2px; }
+  .dict-ja { font-size: 0.95rem; color: var(--primary-dark); font-weight: 600; margin-bottom: 0.5rem; }
+  .dict-example { font-size: 0.82rem; color: var(--text2); font-style: italic; line-height: 1.6; }
+  .dict-example-ja { font-size: 0.78rem; color: var(--text3); margin-top: 0.3rem; }
+  .speak-btn {
+    background: var(--primary-light);
+    border: none;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .speak-btn:hover { background: var(--primary); }
+  .cat-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ===== QUIZ ===== */
+  .quiz-box {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .quiz-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text3);
+  }
+  .quiz-progress {
+    height: 6px;
+    background: var(--bg2);
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .quiz-progress-bar {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 3px;
+    transition: width 0.4s;
+  }
+  .quiz-sentence {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .quiz-blank {
+    display: inline-block;
+    border-bottom: 3px solid var(--primary);
+    min-width: 100px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .quiz-option {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.2s;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+  }
+  .quiz-option:hover { border-color: var(--primary); background: var(--primary-light); }
+  .quiz-option.correct { background: var(--green-light); border-color: var(--green); color: #025E46; }
+  .quiz-option.wrong { background: #FFE5E5; border-color: #FF6B6B; color: #8B0000; }
+  .quiz-feedback {
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.correct { background: var(--green-light); color: #025E46; border: 1.5px solid var(--green); }
+  .quiz-feedback.wrong { background: #FFE5E5; color: #8B0000; border: 1.5px solid #FF6B6B; }
+  .btn-primary {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--white);
+    color: var(--text2);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--primary); color: var(--primary-dark); }
+
+  /* ===== FLASHCARD ===== */
+  .flashcard-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .flashcard-scene {
+    width: 100%;
+    max-width: 500px;
+    height: 260px;
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  .flashcard-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.55s ease;
+  }
+  .flashcard-inner.flipped { transform: rotateY(180deg); }
+  .flashcard-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 2px solid var(--border);
+  }
+  .flashcard-front { background: var(--white); }
+  .flashcard-back {
+    background: linear-gradient(135deg, var(--primary-light), var(--secondary-light));
+    transform: rotateY(180deg);
+  }
+  .flashcard-face h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .flashcard-face .phonetic { font-size: 1rem; color: var(--text3); margin-bottom: 0.5rem; }
+  .flashcard-face .hint { font-size: 0.85rem; color: var(--text3); margin-top: 1rem; }
+  .flashcard-face .ja { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); }
+  .flashcard-face .example { font-size: 0.9rem; color: var(--text2); text-align: center; margin-top: 1rem; font-style: italic; }
+  .flashcard-counter {
+    font-size: 0.9rem;
+    color: var(--text3);
+    font-weight: 600;
+  }
+  .flashcard-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  /* ===== AI PHRASE GENERATOR ===== */
+  .ai-box {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .ai-controls { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+  .ai-controls label { font-size: 0.85rem; font-weight: 700; color: var(--text2); margin-bottom: 4px; display: block; }
+  .ai-controls input, .ai-controls select, .ai-controls textarea {
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .ai-controls input:focus, .ai-controls select:focus, .ai-controls textarea:focus {
+    border-color: var(--primary);
+  }
+  .ai-result {
+    background: var(--bg2);
+    border: 1.5px solid var(--primary-light);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: none;
+  }
+  .ai-result.show { display: block; }
+  .ai-result h3 { font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 1rem; }
+  .ai-phrases { display: flex; flex-direction: column; gap: 0.75rem; }
+  .ai-phrase-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+  }
+  .ai-phrase-en { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+  .ai-phrase-ja { font-size: 0.85rem; color: var(--text2); margin-bottom: 0.3rem; }
+  .ai-phrase-note { font-size: 0.78rem; color: var(--text3); font-style: italic; }
+  .loading-dots { display: inline-flex; gap: 4px; align-items: center; }
+  .loading-dots span {
+    width: 6px; height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite;
+  }
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce { 0%, 80%, 100% { transform: scale(0.6); } 40% { transform: scale(1); } }
+
+  /* ===== PRONUNCIATION ===== */
+  .pron-box {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .pron-phrase { font-size: 1.5rem; font-weight: 800; color: var(--text); margin: 1.5rem 0 0.5rem; }
+  .pron-phonetic { font-size: 1rem; color: var(--text3); margin-bottom: 0.5rem; }
+  .pron-ja { font-size: 0.95rem; color: var(--text2); margin-bottom: 1.5rem; }
+  .pron-btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .pron-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: none;
+  }
+  .pron-result.show { display: block; }
+  .mic-btn {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem auto;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(255,143,171,0.4);
+  }
+  .mic-btn:hover { transform: scale(1.05); }
+  .mic-btn.recording { background: #FF4D6D; animation: pulse 1s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,77,109,0.4); } 70% { box-shadow: 0 0 0 14px rgba(255,77,109,0); } 100% { box-shadow: 0 0 0 0 rgba(255,77,109,0); } }
+
+  /* ===== CONVERSATION ===== */
+  .scene-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .conversation-list { display: flex; flex-direction: column; gap: 1rem; }
+  .conv-item {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    transition: all 0.2s;
+  }
+  .conv-item:hover { box-shadow: var(--shadow); border-color: var(--primary-light); }
+  .conv-scene-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .conv-role { font-size: 0.78rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+  .conv-en { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+  .conv-ja { font-size: 0.88rem; color: var(--text2); margin-bottom: 0.5rem; }
+  .conv-note { font-size: 0.8rem; color: var(--text3); font-style: italic; }
+  .conv-speak { float: right; }
+
+  /* ===== SCENE LEARNING ===== */
+  .scene-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .scene-card {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .scene-card:hover, .scene-card.active {
+    border-color: var(--primary);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+  .scene-card .scene-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+  .scene-card h3 { font-size: 1rem; font-weight: 800; color: var(--text); margin-bottom: 0.4rem; }
+  .scene-card p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; }
+  .scene-words {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+  }
+  .scene-word-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scene-word-card .word-info h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
+  .scene-word-card .word-info p { font-size: 0.8rem; color: var(--text2); }
+
+  /* ===== SCORE ===== */
+  .score-box {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    border: 3px solid var(--primary);
+  }
+  .score-num { font-size: 2rem; font-weight: 800; color: var(--primary-dark); }
+  .score-label { font-size: 0.7rem; color: var(--text3); font-weight: 600; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    header { padding: 0 1rem; }
+    .hero { padding: 2.5rem 1.5rem; }
+    .section { padding: 1.5rem 1rem; }
+    nav a { padding: 6px 8px; font-size: 0.78rem; }
+    .quiz-options { grid-template-columns: 1fr; }
+    .ai-box, .pron-box, .quiz-box { padding: 1.2rem; }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in { animation: fadeIn 0.4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" onclick="showSection('home')">
+      <div class="logo-icon">🍼</div>
+      Childcare English
+    </a>
+    <nav>
+      <a onclick="showSection('home')" class="active" id="nav-home">ホーム</a>
+      <a onclick="showSection('dict')" id="nav-dict">辞書</a>
+      <a onclick="showSection('quiz')" id="nav-quiz">クイズ</a>
+      <a onclick="showSection('flash')" id="nav-flash">カード</a>
+      <a onclick="showSection('ai')" id="nav-ai">AI フレーズ</a>
+      <a onclick="showSection('pron')" id="nav-pron">発音</a>
+      <a onclick="showSection('conv')" id="nav-conv">会話</a>
+      <a onclick="showSection('scene')" id="nav-scene">場面学習</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HOME ===== -->
+<div id="home" class="section active">
+  <div class="hero fade-in" style="max-width:none;padding:4rem 2rem;margin:-2rem -2rem 2rem;">
+    <div class="hero-badge">🎓 保育士・幼稚園教諭向け英語学習</div>
+    <h1>保育英語を<br><span>楽しく学ぼう</span></h1>
+    <p>保育士・幼稚園教諭を目指す学生のための英語自主学習プラットフォーム</p>
+    <div class="hero-cards">
+      <div class="hero-card" onclick="showSection('dict')">
+        <div class="icon">📖</div>
+        <h3>インタラクティブ辞書</h3>
+        <p>保育用語を音声・例文付きで学ぶ</p>
+      </div>
+      <div class="hero-card" onclick="showSection('quiz')">
+        <div class="icon">✏️</div>
+        <h3>クイズ</h3>
+        <p>空欄補充で保育フレーズを練習する</p>
+      </div>
+      <div class="hero-card" onclick="showSection('flash')">
+        <div class="icon">🃏</div>
+        <h3>フラッシュカード</h3>
+        <p>タップして単語を素早く覚える</p>
+      </div>
+      <div class="hero-card" onclick="showSection('ai')">
+        <div class="icon">🤖</div>
+        <h3>AI フレーズ生成</h3>
+        <p>場面を入力すると英語フレーズを自動生成</p>
+      </div>
+      <div class="hero-card" onclick="showSection('pron')">
+        <div class="icon">🎤</div>
+        <h3>発音チェック</h3>
+        <p>マイクで話して発音を練習する</p>
+      </div>
+      <div class="hero-card" onclick="showSection('conv')">
+        <div class="icon">💬</div>
+        <h3>会話シーン</h3>
+        <p>保育現場での実際の会話を場面別で学ぶ</p>
+      </div>
+      <div class="hero-card" onclick="showSection('scene')">
+        <div class="icon">📷</div>
+        <h3>場面別学習</h3>
+        <p>保育室・園庭・給食の場面で使える単語</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DICTIONARY ===== -->
+<div id="dict" class="section">
+  <div class="sec-header fade-in">
+    <div>
+      <h2>📖 保育英語辞書</h2>
+      <p>カテゴリで絞り込んだり、検索して単語を探せます。🔊ボタンで発音を確認できます。</p>
+    </div>
+  </div>
+  <div class="dict-controls fade-in">
+    <input type="text" id="dict-search" placeholder="単語を検索..." oninput="filterDict()">
+  </div>
+  <div class="cat-tabs fade-in" id="dict-cats"></div>
+  <div class="dict-grid fade-in" id="dict-grid"></div>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="quiz" class="section">
+  <div class="sec-header fade-in">
+    <div>
+      <h2>✏️ 保育英語クイズ</h2>
+      <p>カテゴリを選んで、空欄に当てはまる単語を選んでください。</p>
+    </div>
+  </div>
+  <div class="cat-tabs fade-in" id="quiz-cats"></div>
+  <div class="quiz-box fade-in">
+    <div class="quiz-meta">
+      <span id="quiz-counter">1 / 10</span>
+      <span id="quiz-score-display">スコア: 0</span>
+    </div>
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="quiz-bar" style="width:10%"></div></div>
+    <div class="quiz-sentence" id="quiz-sentence"></div>
+    <div class="quiz-options" id="quiz-options"></div>
+    <div class="quiz-feedback" id="quiz-feedback"></div>
+    <div style="display:flex;gap:1rem;justify-content:center;">
+      <button class="btn-primary" id="quiz-next" onclick="nextQuiz()" style="display:none">次の問題 →</button>
+    </div>
+    <div id="quiz-result" style="display:none"></div>
+  </div>
+</div>
+
+<!-- ===== FLASHCARD ===== -->
+<div id="flash" class="section">
+  <div class="sec-header fade-in">
+    <div>
+      <h2>🃏 フラッシュカード</h2>
+      <p>カテゴリを選んで、カードをタップすると日本語訳が表示されます。</p>
+    </div>
+  </div>
+  <div class="cat-tabs fade-in" id="flash-cats"></div>
+  <div class="flashcard-wrapper fade-in">
+    <div class="flashcard-scene" onclick="flipCard()">
+      <div class="flashcard-inner" id="fc-inner">
+        <div class="flashcard-face flashcard-front" id="fc-front">
+          <div class="phonetic" id="fc-phonetic"></div>
+          <h2 id="fc-word"></h2>
+          <div class="hint">タップして日本語を確認</div>
+        </div>
+        <div class="flashcard-face flashcard-back" id="fc-back">
+          <div class="ja" id="fc-ja"></div>
+          <div class="example" id="fc-example"></div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard-counter"><span id="fc-current">1</span> / <span id="fc-total">1</span></div>
+    <div class="flashcard-nav">
+      <button class="btn-secondary" onclick="fcPrev()">← 前へ</button>
+      <button class="btn-primary" onclick="fcSpeak()">🔊 発音を聞く</button>
+      <button class="btn-secondary" onclick="fcNext()">次へ →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== AI PHRASE GENERATOR ===== -->
+<div id="ai" class="section">
+  <div class="sec-header fade-in">
+    <div>
+      <h2>🤖 AI フレーズ生成</h2>
+      <p>場面やシチュエーションを入力すると、英語フレーズと解説を自動生成します。</p>
+    </div>
+  </div>
+  <div class="ai-box fade-in">
+    <div class="ai-controls">
+      <div>
+        <label>場面・シチュエーション（日本語・英語どちらでも）</label>
+        <input type="text" id="ai-scene" placeholder="例：お昼寝の時間、絵本の読み聞かせ、外遊び..." value="">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+        <div>
+          <label>難易度</label>
+          <select id="ai-level">
+            <option value="beginner">初級（シンプルな表現）</option>
+            <option value="intermediate" selected>中級（自然な英語）</option>
+            <option value="advanced">上級（ネイティブ表現）</option>
+          </select>
+        </div>
+        <div>
+          <label>カテゴリ</label>
+          <select id="ai-category">
+            <option value="daily">日常ケア</option>
+            <option value="play">遊び・活動</option>
+            <option value="meal">食事・給食</option>
+            <option value="emotion">気持ち・感情サポート</option>
+            <option value="parent">保護者対応</option>
+            <option value="safety">安全・緊急</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-bottom:1.5rem;">
+      <button class="btn-primary" onclick="generatePhrases()">🤖 フレーズを生成する</button>
+    </div>
+    <div class="ai-result" id="ai-result">
+      <h3 id="ai-result-title">生成されたフレーズ</h3>
+      <div class="ai-phrases" id="ai-phrases"></div>
+      <div style="margin-top:1rem;text-align:center;">
+        <button class="btn-secondary" onclick="speakAllPhrases()" id="speak-all-btn">🔊 全フレーズを読む</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRONUNCIATION ===== -->
+<div id="pron" class="section">
+  <div class="sec-header fade-in">
+    <div>
+      <h2>🎤 発音チェック</h2>
+      <p>カテゴリを選んでフレーズを練習しましょう。🔊でお手本を聞いてからマイクで話してください。</p>
+    </div>
+  </div>
+  <div class="cat-tabs fade-in" id="pron-cats"></div>
+  <div class="pron-box fade-in">
+    <div class="pron-phrase" id="pron-phrase"></div>
+    <div class="pron-phonetic" id="pron-phonetic"></div>
+    <div class="pron-ja" id="pron-ja"></div>
+    <div class="pron-btn-group">
+      <button class="btn-secondary" onclick="pronSpeak()">🔊 お手本を聞く</button>
+    </div>
+    <button class="mic-btn" id="mic-btn" onclick="toggleRecording()">🎤</button>
+    <div id="pron-transcript" style="min-height:40px;font-size:0.95rem;color:var(--text2);"></div>
+    <div class="pron-result" id="pron-result"></div>
+    <div class="pron-btn-group" style="margin-top:1rem;">
+      <button class="btn-secondary" onclick="pronPrev()">← 前へ</button>
+      <span style="font-size:0.85rem;color:var(--text3);align-self:center;" id="pron-counter"></span>
+      <button class="btn-secondary" onclick="pronNext()">次へ →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONVERSATION ===== -->
+<div id="conv" class="section">
+  <div class="sec-header fade-in">
+    <div>
+      <h2>💬 保育現場の会話シーン</h2>
+      <p>実際の保育現場で交わされる会話を場面別で学べます。🔊で発音を聞いてイメージをつかみましょう。</p>
+    </div>
+  </div>
+  <div class="scene-tabs fade-in" id="conv-scene-tabs"></div>
+  <div class="conversation-list fade-in" id="conv-list"></div>
+</div>
+
+<!-- ===== SCENE LEARNING ===== -->
+<div id="scene" class="section">
+  <div class="sec-header fade-in">
+    <div>
+      <h2>📷 場面別学習</h2>
+      <p>場面を選ぶと、その状況で使える単語とフレーズが音声付きで学べます。</p>
+    </div>
+  </div>
+  <div class="scene-cards fade-in" id="scene-cards"></div>
+  <div id="scene-words-area" class="fade-in" style="display:none;">
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--primary-dark);margin-bottom:1rem;" id="scene-words-title"></h3>
+    <div class="scene-words" id="scene-words"></div>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const DICT_DATA = [
+  // Daily Care
+  { word: "diaper", phonetic: "/ˈdaɪpər/", ja: "おむつ", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "It's time to change your diaper.", exampleJa: "おむつを替える時間ですよ。" },
+  { word: "nap time", phonetic: "/næp taɪm/", ja: "お昼寝の時間", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Let's get ready for nap time now.", exampleJa: "お昼寝の準備をしましょう。" },
+  { word: "potty training", phonetic: "/ˈpɒti ˌtreɪnɪŋ/", ja: "トイレトレーニング", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "We're working on potty training together.", exampleJa: "一緒にトイレトレーニングをしています。" },
+  { word: "wash your hands", phonetic: "/wɒʃ jɔː hændz/", ja: "手を洗う", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Please wash your hands before eating.", exampleJa: "食べる前に手を洗ってください。" },
+  { word: "get dressed", phonetic: "/ɡet drest/", ja: "着替える", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Time to get dressed, everyone!", exampleJa: "みんな、着替えの時間ですよ！" },
+  // Play & Activities
+  { word: "storytime", phonetic: "/ˈstɔːritaɪm/", ja: "読み聞かせ", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Let's gather for storytime!", exampleJa: "読み聞かせに集まりましょう！" },
+  { word: "finger painting", phonetic: "/ˈfɪŋɡər ˌpeɪntɪŋ/", ja: "フィンガーペイント", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Today we're doing finger painting.", exampleJa: "今日はフィンガーペイントをします。" },
+  { word: "building blocks", phonetic: "/ˈbɪldɪŋ blɒks/", ja: "積み木", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Can you build a tower with the blocks?", exampleJa: "積み木でタワーを作れますか？" },
+  { word: "outdoor play", phonetic: "/ˈaʊtdɔːr pleɪ/", ja: "外遊び", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "It's time for outdoor play!", exampleJa: "外遊びの時間ですよ！" },
+  { word: "circle time", phonetic: "/ˈsɜːrkəl taɪm/", ja: "集まりの時間", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Please come join us for circle time.", exampleJa: "集まりの時間に来てください。" },
+  // Meal & Snack
+  { word: "snack time", phonetic: "/snæk taɪm/", ja: "おやつの時間", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Snack time is at three o'clock.", exampleJa: "おやつの時間は3時です。" },
+  { word: "lunch box", phonetic: "/lʌntʃ bɒks/", ja: "お弁当箱", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Did you bring your lunch box today?", exampleJa: "今日はお弁当を持ってきましたか？" },
+  { word: "high chair", phonetic: "/haɪ tʃeər/", ja: "ハイチェア", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Please sit in your high chair.", exampleJa: "ハイチェアに座ってください。" },
+  { word: "allergy", phonetic: "/ˈælərdʒi/", ja: "アレルギー", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Please inform us of any food allergies.", exampleJa: "食物アレルギーがあれば教えてください。" },
+  { word: "picky eater", phonetic: "/ˈpɪki ˈiːtər/", ja: "好き嫌いが多い", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "He is a picky eater at the moment.", exampleJa: "今のところ好き嫌いが多いです。" },
+  // Emotions
+  { word: "comfort", phonetic: "/ˈkʌmfərt/", ja: "なだめる・慰める", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "It's okay, I'm here to comfort you.", exampleJa: "大丈夫、慰めてあげますよ。" },
+  { word: "tantrum", phonetic: "/ˈtæntrəm/", ja: "癇癪（かんしゃく）", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "He threw a tantrum when it was time to go.", exampleJa: "帰る時間に癇癪を起こしました。" },
+  { word: "separation anxiety", phonetic: "/ˌsepəˈreɪʃən æŋˈzaɪəti/", ja: "分離不安", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "She shows some separation anxiety at drop-off.", exampleJa: "送り届け時に分離不安が見られます。" },
+  { word: "praise", phonetic: "/preɪz/", ja: "褒める", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "Let's praise her for trying her best!", exampleJa: "頑張った彼女を褒めましょう！" },
+  { word: "milestone", phonetic: "/ˈmaɪlstəʊn/", ja: "発達の節目・マイルストーン", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "Walking is an important milestone.", exampleJa: "歩くことは重要な発達の節目です。" },
+  // Safety
+  { word: "first aid", phonetic: "/fɜːrst eɪd/", ja: "応急処置", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "I need to apply first aid right away.", exampleJa: "すぐに応急処置が必要です。" },
+  { word: "emergency contact", phonetic: "/ɪˈmɜːrdʒənsi ˈkɒntækt/", ja: "緊急連絡先", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "Please provide an emergency contact number.", exampleJa: "緊急連絡先を教えてください。" },
+  { word: "evacuation drill", phonetic: "/ɪˌvækjuˈeɪʃən drɪl/", ja: "避難訓練", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "We practice an evacuation drill each month.", exampleJa: "毎月避難訓練をしています。" },
+  { word: "supervision", phonetic: "/ˌsuːpərˈvɪʒən/", ja: "見守り・監督", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "Children need constant supervision near water.", exampleJa: "水の近くでは常に見守りが必要です。" },
+  { word: "injury", phonetic: "/ˈɪndʒəri/", ja: "けが", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "We had a minor injury on the playground.", exampleJa: "遊び場で軽いけががありました。" },
+];
+
+const QUIZ_DATA = [
+  { sentence: "It's time to change your ___.", blank: "diaper", options: ["diaper", "bottle", "blanket", "pillow"], explanation: "diaper（おむつ）を使います。" },
+  { sentence: "Let's gather for ___ time!", blank: "circle", options: ["story", "circle", "nap", "snack"], explanation: "circle time（集まりの時間）は朝や活動の区切りによく使います。" },
+  { sentence: "___ time is at three o'clock.", blank: "Snack", options: ["Nap", "Bath", "Snack", "Circle"], explanation: "snack time（おやつの時間）です。" },
+  { sentence: "Please wash your ___ before eating.", blank: "hands", options: ["face", "hands", "feet", "hair"], explanation: "wash your hands（手を洗う）は食前の基本フレーズです。" },
+  { sentence: "She shows some separation ___ at drop-off.", blank: "anxiety", options: ["anxiety", "happiness", "energy", "interest"], explanation: "separation anxiety（分離不安）は登園時によく見られます。" },
+  { sentence: "We practice an evacuation ___ each month.", blank: "drill", options: ["game", "drill", "walk", "test"], explanation: "evacuation drill（避難訓練）を毎月行います。" },
+  { sentence: "He threw a ___ when it was time to go.", blank: "tantrum", options: ["tantrum", "ball", "toy", "smile"], explanation: "tantrum（癇癪）は子どもの感情表現のひとつです。" },
+  { sentence: "Please inform us of any food ___.", blank: "allergies", options: ["preferences", "allergies", "choices", "habits"], explanation: "food allergies（食物アレルギー）の確認は大切です。" },
+  { sentence: "Children need constant ___ near water.", blank: "supervision", options: ["supervision", "encouragement", "permission", "exercise"], explanation: "supervision（見守り）は安全管理の基本です。" },
+  { sentence: "Walking is an important ___.", blank: "milestone", options: ["activity", "milestone", "problem", "challenge"], explanation: "milestone（発達の節目）で子どもの成長を把握します。" },
+];
+
+const PRON_DATA = [
+  { phrase: "Good morning, everyone!", phonetic: "/ɡʊd ˈmɔːrnɪŋ ˈevriˌwʌn/", ja: "おはようございます、みなさん！", cat: "あいさつ" },
+  { phrase: "Time to wash our hands.", phonetic: "/taɪm tə wɒʃ aʊər hændz/", ja: "手を洗いましょう。", cat: "日常ケア" },
+  { phrase: "Let's all sit down together.", phonetic: "/lets ɔːl sɪt daʊn təˈɡeðər/", ja: "みんなで座りましょう。", cat: "集団活動" },
+  { phrase: "What a wonderful job!", phonetic: "/wɒt ə ˈwʌndərfəl dʒɒb/", ja: "よくできました！", cat: "褒め言葉" },
+  { phrase: "Are you feeling okay?", phonetic: "/ɑːr juː ˈfiːlɪŋ oʊˈkeɪ/", ja: "気分はいいですか？", cat: "健康確認" },
+  { phrase: "It's nap time now.", phonetic: "/ɪts næp taɪm naʊ/", ja: "お昼寝の時間ですよ。", cat: "日常ケア" },
+  { phrase: "Line up, please!", phonetic: "/laɪn ʌp pliːz/", ja: "並んでください！", cat: "集団活動" },
+  { phrase: "Do you need help?", phonetic: "/duː juː niːd help/", ja: "手伝いが必要ですか？", cat: "サポート" },
+  { phrase: "Snack time, everyone!", phonetic: "/snæk taɪm ˈevriˌwʌn/", ja: "おやつの時間ですよ、みなさん！", cat: "食事・給食" },
+  { phrase: "You did an amazing job today!", phonetic: "/juː dɪd ən əˈmeɪzɪŋ dʒɒb təˈdeɪ/", ja: "今日はすごくよくできました！", cat: "褒め言葉" },
+];
+
+const CONV_DATA = [
+  { scene: "登降園", sceneBg: "#FFD6E0", sceneTxt: "#C7375F", role: "保育士 → 保護者", en: "Good morning! How was his night?", ja: "おはようございます！昨夜はどうでしたか？", note: "登園時の保護者への声かけ" },
+  { scene: "登降園", sceneBg: "#FFD6E0", sceneTxt: "#C7375F", role: "保護者 → 保育士", en: "He didn't sleep well. Please let us know if he seems tired.", ja: "あまり寝られませんでした。疲れているようでしたら教えてください。", note: "保護者から保育士への引き継ぎ" },
+  { scene: "登降園", sceneBg: "#FFD6E0", sceneTxt: "#C7375F", role: "保育士 → 保護者", en: "She had a wonderful day today. She really enjoyed storytime!", ja: "今日は素晴らしい一日でした。読み聞かせをとても楽しみました！", note: "お迎え時の報告" },
+  { scene: "食事・給食", sceneBg: "#FFF3C4", sceneTxt: "#8A6200", role: "保育士 → 子ども", en: "Let's try just one bite, okay?", ja: "ひとくちだけ試してみましょう、いいですか？", note: "食が細い子どもへの声かけ" },
+  { scene: "食事・給食", sceneBg: "#FFF3C4", sceneTxt: "#8A6200", role: "保育士 → 子ども", en: "Remember to chew slowly and carefully.", ja: "ゆっくりよく噛んで食べましょう。", note: "食事指導の基本フレーズ" },
+  { scene: "食事・給食", sceneBg: "#FFF3C4", sceneTxt: "#8A6200", role: "保育士 → 子ども", en: "Great job finishing your lunch today!", ja: "今日のお昼ご飯を全部食べましたね！", note: "達成を褒める" },
+  { scene: "遊び・活動", sceneBg: "#D4EEF7", sceneTxt: "#1A6E8A", role: "保育士 → 子ども", en: "Can you share the toys with your friends?", ja: "おもちゃをお友達と一緒に使えますか？", note: "社会性を促す声かけ" },
+  { scene: "遊び・活動", sceneBg: "#D4EEF7", sceneTxt: "#1A6E8A", role: "保育士 → 子ども", en: "Wow, that's a beautiful drawing!", ja: "わあ、素敵な絵ですね！", note: "制作活動での褒め言葉" },
+  { scene: "遊び・活動", sceneBg: "#D4EEF7", sceneTxt: "#1A6E8A", role: "保育士 → 子ども", en: "It's time to clean up now. Let's put the toys away together.", ja: "片付けの時間ですよ。一緒におもちゃを片付けましょう。", note: "片付けの声かけ" },
+  { scene: "安全・緊急", sceneBg: "#CCFAED", sceneTxt: "#025E46", role: "保育士 → 子ども", en: "Are you hurt? Show me where it hurts.", ja: "けがをしましたか？どこが痛いか教えてください。", note: "けが対応の第一声" },
+  { scene: "安全・緊急", sceneBg: "#CCFAED", sceneTxt: "#025E46", role: "保育士 → 保護者", en: "Your child had a minor fall on the playground. She is fine, but I wanted to let you know.", ja: "お子さんが遊び場で軽く転びました。大丈夫ですが、お知らせしたかったです。", note: "保護者への報告" },
+];
+
+const SCENE_DATA = [
+  {
+    icon: "🏠", name: "保育室", desc: "室内でのケア・活動で使う言葉",
+    words: [
+      { en: "cubby", ja: "個人ロッカー" }, { en: "mat", ja: "マット" },
+      { en: "schedule board", ja: "日程ボード" }, { en: "attendance", ja: "出欠確認" },
+      { en: "rest area", ja: "休憩スペース" }, { en: "art corner", ja: "制作コーナー" },
+    ]
+  },
+  {
+    icon: "🌳", name: "園庭・外遊び", desc: "外での遊びや自然体験で使う言葉",
+    words: [
+      { en: "sandbox", ja: "砂場" }, { en: "slide", ja: "すべり台" },
+      { en: "swing", ja: "ブランコ" }, { en: "sprinkler", ja: "水遊び用スプリンクラー" },
+      { en: "mud kitchen", ja: "泥遊びコーナー" }, { en: "nature walk", ja: "自然散策" },
+    ]
+  },
+  {
+    icon: "🍱", name: "給食・おやつ", desc: "食事の時間に使う言葉",
+    words: [
+      { en: "tray", ja: "お盆" }, { en: "bib", ja: "よだれかけ" },
+      { en: "sippy cup", ja: "スパウトカップ" }, { en: "portion", ja: "一人分の量" },
+      { en: "dietary restriction", ja: "食事制限" }, { en: "food allergy list", ja: "アレルギー一覧表" },
+    ]
+  },
+  {
+    icon: "😴", name: "お昼寝・休憩", desc: "休息の時間に使う言葉",
+    words: [
+      { en: "cot", ja: "簡易ベッド・コット" }, { en: "blanket", ja: "毛布" },
+      { en: "lullaby", ja: "子守唄" }, { en: "white noise", ja: "ホワイトノイズ" },
+      { en: "sleep log", ja: "睡眠記録" }, { en: "monitor", ja: "ベビーモニター" },
+    ]
+  },
+  {
+    icon: "🎨", name: "制作・アート", desc: "制作活動で使う言葉",
+    words: [
+      { en: "glue stick", ja: "スティックのり" }, { en: "scissors", ja: "はさみ" },
+      { en: "craft paper", ja: "工作用紙" }, { en: "smock", ja: "スモック（汚れ防止エプロン）" },
+      { en: "tempera paint", ja: "テンペラ絵の具" }, { en: "clay", ja: "粘土" },
+    ]
+  },
+  {
+    icon: "🤝", name: "保護者対応", desc: "保護者とのコミュニケーションで使う言葉",
+    words: [
+      { en: "pick-up time", ja: "お迎え時間" }, { en: "daily report", ja: "連絡帳・日報" },
+      { en: "parent-teacher conference", ja: "個別懇談" }, { en: "consent form", ja: "同意書" },
+      { en: "school newsletter", ja: "学校だより" }, { en: "enrollment", ja: "入園手続き" },
+    ]
+  },
+];
+
+// ===== STATE =====
+let dictCat = "すべて";
+let quizData = [], quizIndex = 0, quizScore = 0, quizAnswered = false, quizCat = "すべて";
+let fcData = [], fcIndex = 0, fcCat = "すべて";
+let pronData = [...PRON_DATA], pronIndex = 0, pronCat = "すべて";
+let convScene = "すべて";
+let recognition = null, isRecording = false;
+
+// ===== UTILS =====
+function speak(text, rate = 0.9) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-US'; u.rate = rate; speechSynthesis.speak(u);
+}
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  if (id === 'dict') renderDict();
+  if (id === 'quiz') initQuiz();
+  if (id === 'flash') initFlash();
+  if (id === 'pron') initPron();
+  if (id === 'conv') renderConv();
+  if (id === 'scene') renderScene();
+}
+
+// ===== DICTIONARY =====
+function renderDict() {
+  const cats = ["すべて", ...new Set(DICT_DATA.map(d => d.cat))];
+  const tabsEl = document.getElementById('dict-cats');
+  tabsEl.innerHTML = cats.map(c => `<div class="cat-tab ${c === dictCat ? 'active' : ''}" onclick="setDictCat('${c}')">${c}</div>`).join('');
+  const search = document.getElementById('dict-search').value.toLowerCase();
+  const filtered = DICT_DATA.filter(d =>
+    (dictCat === 'すべて' || d.cat === dictCat) &&
+    (d.word.toLowerCase().includes(search) || d.ja.includes(search) || d.example.toLowerCase().includes(search))
+  );
+  document.getElementById('dict-grid').innerHTML = filtered.map(d => `
+    <div class="dict-card">
+      <span class="cat-badge" style="background:${d.catColor};color:${d.catText}">${d.cat}</span>
+      <div class="dict-card-top">
+        <div>
+          <div class="dict-word">${d.word}</div>
+          <div class="dict-phonetic">${d.phonetic}</div>
+        </div>
+        <button class="speak-btn" onclick="speak('${d.word}')">🔊</button>
+      </div>
+      <div class="dict-ja">${d.ja}</div>
+      <div class="dict-example">"${d.example}"</div>
+      <div class="dict-example-ja">${d.exampleJa}</div>
+    </div>
+  `).join('');
+}
+function setDictCat(c) { dictCat = c; renderDict(); }
+function filterDict() { renderDict(); }
+
+// ===== QUIZ =====
+function initQuiz() {
+  const cats = ["すべて", ...new Set(QUIZ_DATA.map(() => 'すべて'))];
+  document.getElementById('quiz-cats').innerHTML = `
+    <div class="cat-tab active" onclick="startQuiz()">全問題</div>
+  `;
+  startQuiz();
+}
+function startQuiz() {
+  quizData = [...QUIZ_DATA].sort(() => Math.random() - 0.5);
+  quizIndex = 0; quizScore = 0; quizAnswered = false;
+  document.getElementById('quiz-result').style.display = 'none';
+  renderQuiz();
+}
+function renderQuiz() {
+  if (quizIndex >= quizData.length) { showQuizResult(); return; }
+  const q = quizData[quizIndex];
+  const sent = q.sentence.replace('___', `<span class="quiz-blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>`);
+  document.getElementById('quiz-sentence').innerHTML = sent;
+  document.getElementById('quiz-counter').textContent = `${quizIndex + 1} / ${quizData.length}`;
+  document.getElementById('quiz-score-display').textContent = `スコア: ${quizScore}`;
+  document.getElementById('quiz-bar').style.width = `${((quizIndex) / quizData.length) * 100}%`;
+  document.getElementById('quiz-feedback').className = 'quiz-feedback';
+  document.getElementById('quiz-feedback').textContent = '';
+  document.getElementById('quiz-next').style.display = 'none';
+  quizAnswered = false;
+  const opts = [...q.options].sort(() => Math.random() - 0.5);
+  document.getElementById('quiz-options').innerHTML = opts.map(o => `
+    <button class="quiz-option" onclick="answerQuiz('${o}')">${o}</button>
+  `).join('');
+}
+function answerQuiz(answer) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = quizData[quizIndex];
+  const correct = answer.toLowerCase() === q.blank.toLowerCase();
+  if (correct) quizScore++;
+  document.querySelectorAll('.quiz-option').forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent.toLowerCase() === q.blank.toLowerCase()) btn.classList.add('correct');
+    else if (btn.textContent === answer && !correct) btn.classList.add('wrong');
+  });
+  const fb = document.getElementById('quiz-feedback');
+  fb.className = 'quiz-feedback show ' + (correct ? 'correct' : 'wrong');
+  fb.textContent = correct ? `✅ 正解！${q.explanation}` : `❌ 不正解。正解は「${q.blank}」です。${q.explanation}`;
+  document.getElementById('quiz-next').style.display = 'inline-block';
+  const sent = q.sentence.replace('___', `<span class="quiz-blank" style="color:var(--green)">${q.blank}</span>`);
+  document.getElementById('quiz-sentence').innerHTML = sent;
+}
+function nextQuiz() { quizIndex++; renderQuiz(); }
+function showQuizResult() {
+  const pct = Math.round((quizScore / quizData.length) * 100);
+  const msg = pct >= 80 ? '🎉 すばらしい！' : pct >= 60 ? '👍 いい調子！' : '💪 もう一度挑戦！';
+  document.getElementById('quiz-result').style.display = 'block';
+  document.getElementById('quiz-result').innerHTML = `
+    <div class="score-box">
+      <div class="score-circle">
+        <div class="score-num">${pct}%</div>
+        <div class="score-label">スコア</div>
+      </div>
+      <h3 style="font-size:1.2rem;margin-bottom:0.5rem">${msg}</h3>
+      <p style="color:var(--text2);margin-bottom:1.5rem">${quizData.length}問中${quizScore}問正解</p>
+      <button class="btn-primary" onclick="startQuiz()">もう一度挑戦</button>
+    </div>
+  `;
+  document.getElementById('quiz-options').innerHTML = '';
+  document.getElementById('quiz-sentence').innerHTML = '';
+  document.getElementById('quiz-feedback').className = 'quiz-feedback';
+  document.getElementById('quiz-next').style.display = 'none';
+}
+
+// ===== FLASHCARD =====
+function initFlash() {
+  const cats = ["すべて", ...new Set(DICT_DATA.map(d => d.cat))];
+  document.getElementById('flash-cats').innerHTML = cats.map(c =>
+    `<div class="cat-tab ${c === fcCat ? 'active' : ''}" onclick="setFcCat('${c}')">${c}</div>`
+  ).join('');
+  fcData = fcCat === 'すべて' ? [...DICT_DATA] : DICT_DATA.filter(d => d.cat === fcCat);
+  fcIndex = 0;
+  renderFC();
+}
+function setFcCat(c) { fcCat = c; initFlash(); }
+function renderFC() {
+  const d = fcData[fcIndex];
+  document.getElementById('fc-word').textContent = d.word;
+  document.getElementById('fc-phonetic').textContent = d.phonetic;
+  document.getElementById('fc-ja').textContent = d.ja;
+  document.getElementById('fc-example').textContent = d.example;
+  document.getElementById('fc-current').textContent = fcIndex + 1;
+  document.getElementById('fc-total').textContent = fcData.length;
+  document.getElementById('fc-inner').classList.remove('flipped');
+}
+function flipCard() { document.getElementById('fc-inner').classList.toggle('flipped'); }
+function fcPrev() { fcIndex = (fcIndex - 1 + fcData.length) % fcData.length; renderFC(); }
+function fcNext() { fcIndex = (fcIndex + 1) % fcData.length; renderFC(); }
+function fcSpeak() { speak(fcData[fcIndex].word); }
+
+// ===== AI PHRASE GENERATOR =====
+async function generatePhrases() {
+  const scene = document.getElementById('ai-scene').value.trim();
+  const level = document.getElementById('ai-level').value;
+  const category = document.getElementById('ai-category').value;
+  if (!scene) { alert('場面を入力してください。'); return; }
+  
+  const resultEl = document.getElementById('ai-result');
+  const phrasesEl = document.getElementById('ai-phrases');
+  resultEl.classList.add('show');
+  document.getElementById('ai-result-title').textContent = '生成中...';
+  phrasesEl.innerHTML = `<div style="text-align:center;padding:1.5rem;">
+    <div class="loading-dots"><span></span><span></span><span></span></div>
+    <p style="margin-top:1rem;color:var(--text3);font-size:0.9rem;">AIがフレーズを生成しています...</p>
+  </div>`;
+
+  const levelMap = { beginner: '初級（シンプルで短い表現）', intermediate: '中級（自然な日常英語）', advanced: '上級（ネイティブらしい表現）' };
+  const catMap = { daily: '日常ケア', play: '遊び・活動', meal: '食事・給食', emotion: '気持ち・感情サポート', parent: '保護者対応', safety: '安全・緊急' };
+
+  const prompt = `あなたは保育英語の専門家です。以下の条件で保育現場で使える英語フレーズを5つ生成してください。
+
+場面：${scene}
+カテゴリ：${catMap[category]}
+難易度：${levelMap[level]}
+
+必ずJSONのみで返答し、前後に説明文やマークダウンを入れないでください。
+以下の形式のJSON配列を返してください：
+[
+  {
+    "en": "英語フレーズ",
+    "ja": "日本語訳",
+    "note": "使い方・場面のヒント（日本語で1文）"
+  }
+]`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content.map(i => i.text || '').join('');
+    const clean = text.replace(/```json|```/g, '').trim();
+    const phrases = JSON.parse(clean);
+    
+    document.getElementById('ai-result-title').textContent = `「${scene}」で使えるフレーズ`;
+    phrasesEl.innerHTML = phrases.map(p => `
+      <div class="ai-phrase-item">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+          <div style="flex:1;">
+            <div class="ai-phrase-en">${p.en}</div>
+            <div class="ai-phrase-ja">${p.ja}</div>
+            <div class="ai-phrase-note">💡 ${p.note}</div>
+          </div>
+          <button class="speak-btn" onclick="speak('${p.en.replace(/'/g,"\\'")}')">🔊</button>
+        </div>
+      </div>
+    `).join('');
+    window._aiPhrases = phrases;
+  } catch (e) {
+    phrasesEl.innerHTML = `<p style="color:#E24B4A;text-align:center;">エラーが発生しました。もう一度お試しください。</p>`;
+  }
+}
+
+function speakAllPhrases() {
+  if (!window._aiPhrases) return;
+  const phrases = window._aiPhrases;
+  let i = 0;
+  function speakNext() {
+    if (i >= phrases.length) return;
+    const u = new SpeechSynthesisUtterance(phrases[i].en);
+    u.lang = 'en-US'; u.rate = 0.85;
+    u.onend = () => { i++; setTimeout(speakNext, 600); };
+    speechSynthesis.speak(u);
+  }
+  speakNext();
+}
+
+// ===== PRONUNCIATION =====
+function initPron() {
+  const cats = ["すべて", ...new Set(PRON_DATA.map(p => p.cat))];
+  document.getElementById('pron-cats').innerHTML = cats.map(c =>
+    `<div class="cat-tab ${c === pronCat ? 'active' : ''}" onclick="setPronCat('${c}')">${c}</div>`
+  ).join('');
+  pronData = pronCat === 'すべて' ? [...PRON_DATA] : PRON_DATA.filter(p => p.cat === pronCat);
+  pronIndex = 0;
+  renderPron();
+}
+function setPronCat(c) { pronCat = c; initPron(); }
+function renderPron() {
+  const p = pronData[pronIndex];
+  document.getElementById('pron-phrase').textContent = p.phrase;
+  document.getElementById('pron-phonetic').textContent = p.phonetic;
+  document.getElementById('pron-ja').textContent = p.ja;
+  document.getElementById('pron-counter').textContent = `${pronIndex + 1} / ${pronData.length}`;
+  document.getElementById('pron-transcript').textContent = '';
+  document.getElementById('pron-result').className = 'pron-result';
+  document.getElementById('pron-result').textContent = '';
+}
+function pronSpeak() { speak(pronData[pronIndex].phrase, 0.8); }
+function pronPrev() { pronIndex = (pronIndex - 1 + pronData.length) % pronData.length; renderPron(); }
+function pronNext() { pronIndex = (pronIndex + 1) % pronData.length; renderPron(); }
+
+function toggleRecording() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    document.getElementById('pron-result').className = 'pron-result show';
+    document.getElementById('pron-result').style.background = '#FFE5E5';
+    document.getElementById('pron-result').style.color = '#8B0000';
+    document.getElementById('pron-result').textContent = '⚠️ このブラウザは音声認識に対応していません。Chrome をお試しください。';
+    return;
+  }
+  if (isRecording) { recognition && recognition.stop(); return; }
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SR();
+  recognition.lang = 'en-US'; recognition.interimResults = true;
+  isRecording = true;
+  const btn = document.getElementById('mic-btn');
+  btn.classList.add('recording'); btn.textContent = '⏹';
+  document.getElementById('pron-transcript').textContent = '聞いています...';
+  recognition.onresult = e => {
+    const t = Array.from(e.results).map(r => r[0].transcript).join('');
+    document.getElementById('pron-transcript').textContent = `あなたの発音: "${t}"`;
+    if (e.results[e.results.length - 1].isFinal) {
+      const target = pronData[pronIndex].phrase.toLowerCase().replace(/[^a-z\s]/g, '');
+      const said = t.toLowerCase().replace(/[^a-z\s]/g, '');
+      const similarity = calcSimilarity(target, said);
+      const result = document.getElementById('pron-result');
+      result.className = 'pron-result show';
+      if (similarity >= 0.75) {
+        result.style.background = 'var(--green-light)'; result.style.color = '#025E46';
+        result.style.border = '1.5px solid var(--green)';
+        result.textContent = `🎉 素晴らしい！発音スコア: ${Math.round(similarity * 100)}点`;
+      } else if (similarity >= 0.5) {
+        result.style.background = 'var(--accent-light)'; result.style.color = '#8A6200';
+        result.style.border = '1.5px solid var(--accent)';
+        result.textContent = `👍 いい調子！発音スコア: ${Math.round(similarity * 100)}点。もう一度挑戦してみましょう。`;
+      } else {
+        result.style.background = '#FFE5E5'; result.style.color = '#8B0000';
+        result.style.border = '1.5px solid #FF6B6B';
+        result.textContent = `💪 頑張って！発音スコア: ${Math.round(similarity * 100)}点。🔊 お手本を聞いてから再挑戦！`;
+      }
+    }
+  };
+  recognition.onend = () => { isRecording = false; btn.classList.remove('recording'); btn.textContent = '🎤'; };
+  recognition.start();
+}
+
+function calcSimilarity(a, b) {
+  const wordsA = a.split(' ').filter(Boolean);
+  const wordsB = b.split(' ').filter(Boolean);
+  const matched = wordsA.filter(w => wordsB.includes(w)).length;
+  return matched / Math.max(wordsA.length, 1);
+}
+
+// ===== CONVERSATION =====
+function renderConv() {
+  const scenes = ["すべて", ...new Set(CONV_DATA.map(c => c.scene))];
+  document.getElementById('conv-scene-tabs').innerHTML = scenes.map(s =>
+    `<div class="cat-tab ${s === convScene ? 'active' : ''}" onclick="setConvScene('${s}')">${s}</div>`
+  ).join('');
+  const filtered = convScene === 'すべて' ? CONV_DATA : CONV_DATA.filter(c => c.scene === convScene);
+  document.getElementById('conv-list').innerHTML = filtered.map(c => `
+    <div class="conv-item">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div style="flex:1;">
+          <span class="conv-scene-badge" style="background:${c.sceneBg};color:${c.sceneTxt}">${c.scene}</span>
+          <div class="conv-role">${c.role}</div>
+          <div class="conv-en">"${c.en}"</div>
+          <div class="conv-ja">${c.ja}</div>
+          <div class="conv-note">💡 ${c.note}</div>
+        </div>
+        <button class="speak-btn" onclick="speak('${c.en.replace(/'/g,"\\'")}')">🔊</button>
+      </div>
+    </div>
+  `).join('');
+}
+function setConvScene(s) { convScene = s; renderConv(); }
+
+// ===== SCENE LEARNING =====
+let activeScene = null;
+function renderScene() {
+  document.getElementById('scene-cards').innerHTML = SCENE_DATA.map((s, i) => `
+    <div class="scene-card ${activeScene === i ? 'active' : ''}" onclick="showSceneWords(${i})">
+      <div class="scene-icon">${s.icon}</div>
+      <h3>${s.name}</h3>
+      <p>${s.desc}</p>
+    </div>
+  `).join('');
+  if (activeScene !== null) showSceneWordsRender(activeScene);
+}
+function showSceneWords(i) {
+  activeScene = i;
+  document.querySelectorAll('.scene-card').forEach((c, idx) => c.classList.toggle('active', idx === i));
+  showSceneWordsRender(i);
+}
+function showSceneWordsRender(i) {
+  const s = SCENE_DATA[i];
+  document.getElementById('scene-words-area').style.display = 'block';
+  document.getElementById('scene-words-title').textContent = `${s.icon} ${s.name}で使う単語・フレーズ`;
+  document.getElementById('scene-words').innerHTML = s.words.map(w => `
+    <div class="scene-word-card">
+      <div class="word-info">
+        <h4>${w.en}</h4>
+        <p>${w.ja}</p>
+      </div>
+      <button class="speak-btn" onclick="speak('${w.en}')">🔊</button>
+    </div>
+  `).join('');
+}
+
+// ===== INIT =====
+renderDict();
+</script>
+</body>
+</html>
