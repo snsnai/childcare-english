@@ -764,6 +764,7 @@
         <div class="flashcard-face flashcard-back" id="fc-back">
           <div class="ja" id="fc-ja"></div>
           <div class="example" id="fc-example"></div>
+          <div class="example" id="fc-example-ja" style="font-style:normal;color:var(--primary-dark);margin-top:0.4rem;font-size:0.82rem;"></div>
         </div>
       </div>
     </div>
@@ -882,49 +883,96 @@
 <script>
 // ===== DATA =====
 const DICT_DATA = [
-  // Daily Care
+  // 日常ケア
   { word: "diaper", phonetic: "/ˈdaɪpər/", ja: "おむつ", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "It's time to change your diaper.", exampleJa: "おむつを替える時間ですよ。" },
   { word: "nap time", phonetic: "/næp taɪm/", ja: "お昼寝の時間", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Let's get ready for nap time now.", exampleJa: "お昼寝の準備をしましょう。" },
   { word: "potty training", phonetic: "/ˈpɒti ˌtreɪnɪŋ/", ja: "トイレトレーニング", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "We're working on potty training together.", exampleJa: "一緒にトイレトレーニングをしています。" },
   { word: "wash your hands", phonetic: "/wɒʃ jɔː hændz/", ja: "手を洗う", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Please wash your hands before eating.", exampleJa: "食べる前に手を洗ってください。" },
   { word: "get dressed", phonetic: "/ɡet drest/", ja: "着替える", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Time to get dressed, everyone!", exampleJa: "みんな、着替えの時間ですよ！" },
-  // Play & Activities
+  { word: "brush teeth", phonetic: "/brʌʃ tiːθ/", ja: "歯を磨く", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Let's brush our teeth after lunch.", exampleJa: "昼食後に歯を磨きましょう。" },
+  { word: "wipe", phonetic: "/waɪp/", ja: "拭く・おしりふき", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "I need to wipe your hands.", exampleJa: "手を拭きますね。" },
+  { word: "sunscreen", phonetic: "/ˈsʌnskriːn/", ja: "日焼け止め", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Let's put on sunscreen before going outside.", exampleJa: "外に出る前に日焼け止めを塗りましょう。" },
+  { word: "drop-off", phonetic: "/ˈdrɒp ɒf/", ja: "登園・送り届け", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "Drop-off time is at eight thirty.", exampleJa: "登園時間は8時半です。" },
+  { word: "pick-up", phonetic: "/ˈpɪk ʌp/", ja: "お迎え", cat: "日常ケア", catColor: "#FFD6E0", catText: "#C7375F", example: "What time is pick-up today?", exampleJa: "今日のお迎えは何時ですか？" },
+  // 遊び・活動
   { word: "storytime", phonetic: "/ˈstɔːritaɪm/", ja: "読み聞かせ", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Let's gather for storytime!", exampleJa: "読み聞かせに集まりましょう！" },
   { word: "finger painting", phonetic: "/ˈfɪŋɡər ˌpeɪntɪŋ/", ja: "フィンガーペイント", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Today we're doing finger painting.", exampleJa: "今日はフィンガーペイントをします。" },
   { word: "building blocks", phonetic: "/ˈbɪldɪŋ blɒks/", ja: "積み木", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Can you build a tower with the blocks?", exampleJa: "積み木でタワーを作れますか？" },
   { word: "outdoor play", phonetic: "/ˈaʊtdɔːr pleɪ/", ja: "外遊び", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "It's time for outdoor play!", exampleJa: "外遊びの時間ですよ！" },
   { word: "circle time", phonetic: "/ˈsɜːrkəl taɪm/", ja: "集まりの時間", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Please come join us for circle time.", exampleJa: "集まりの時間に来てください。" },
-  // Meal & Snack
+  { word: "role play", phonetic: "/rəʊl pleɪ/", ja: "ごっこ遊び", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "They love role play in the kitchen corner.", exampleJa: "おままごとコーナーでのごっこ遊びが大好きです。" },
+  { word: "sing-along", phonetic: "/ˈsɪŋ əˌlɒŋ/", ja: "みんなで歌う", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Let's have a sing-along before lunch.", exampleJa: "昼食前にみんなで歌いましょう。" },
+  { word: "puzzle", phonetic: "/ˈpʌzəl/", ja: "パズル", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Can you finish the puzzle by yourself?", exampleJa: "自分でパズルを完成できますか？" },
+  { word: "clean up", phonetic: "/kliːn ʌp/", ja: "片付ける", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "It's time to clean up the toys.", exampleJa: "おもちゃを片付ける時間ですよ。" },
+  { word: "take turns", phonetic: "/teɪk tɜːrnz/", ja: "順番を守る", cat: "遊び・活動", catColor: "#D4EEF7", catText: "#1A6E8A", example: "Remember to take turns on the slide.", exampleJa: "すべり台は順番に使いましょう。" },
+  // 食事・給食
   { word: "snack time", phonetic: "/snæk taɪm/", ja: "おやつの時間", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Snack time is at three o'clock.", exampleJa: "おやつの時間は3時です。" },
   { word: "lunch box", phonetic: "/lʌntʃ bɒks/", ja: "お弁当箱", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Did you bring your lunch box today?", exampleJa: "今日はお弁当を持ってきましたか？" },
   { word: "high chair", phonetic: "/haɪ tʃeər/", ja: "ハイチェア", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Please sit in your high chair.", exampleJa: "ハイチェアに座ってください。" },
   { word: "allergy", phonetic: "/ˈælərdʒi/", ja: "アレルギー", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Please inform us of any food allergies.", exampleJa: "食物アレルギーがあれば教えてください。" },
   { word: "picky eater", phonetic: "/ˈpɪki ˈiːtər/", ja: "好き嫌いが多い", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "He is a picky eater at the moment.", exampleJa: "今のところ好き嫌いが多いです。" },
-  // Emotions
+  { word: "bib", phonetic: "/bɪb/", ja: "よだれかけ・食事エプロン", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Please put on your bib before eating.", exampleJa: "食事の前にエプロンをつけてください。" },
+  { word: "portion", phonetic: "/ˈpɔːrʃən/", ja: "一人分の量", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "The portion size is just right for toddlers.", exampleJa: "量は幼児にちょうどよいです。" },
+  { word: "chew", phonetic: "/tʃuː/", ja: "噛む", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Please chew your food slowly.", exampleJa: "食べ物をゆっくり噛んでください。" },
+  { word: "drink water", phonetic: "/drɪŋk ˈwɔːtər/", ja: "水を飲む", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Don't forget to drink water.", exampleJa: "水を飲むのを忘れずに。" },
+  { word: "dietary restriction", phonetic: "/ˈdaɪətəri rɪˈstrɪkʃən/", ja: "食事制限", cat: "食事・給食", catColor: "#FFF3C4", catText: "#8A6200", example: "Please check the dietary restriction list.", exampleJa: "食事制限リストを確認してください。" },
+  // 感情サポート
   { word: "comfort", phonetic: "/ˈkʌmfərt/", ja: "なだめる・慰める", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "It's okay, I'm here to comfort you.", exampleJa: "大丈夫、慰めてあげますよ。" },
   { word: "tantrum", phonetic: "/ˈtæntrəm/", ja: "癇癪（かんしゃく）", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "He threw a tantrum when it was time to go.", exampleJa: "帰る時間に癇癪を起こしました。" },
   { word: "separation anxiety", phonetic: "/ˌsepəˈreɪʃən æŋˈzaɪəti/", ja: "分離不安", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "She shows some separation anxiety at drop-off.", exampleJa: "送り届け時に分離不安が見られます。" },
   { word: "praise", phonetic: "/preɪz/", ja: "褒める", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "Let's praise her for trying her best!", exampleJa: "頑張った彼女を褒めましょう！" },
-  { word: "milestone", phonetic: "/ˈmaɪlstəʊn/", ja: "発達の節目・マイルストーン", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "Walking is an important milestone.", exampleJa: "歩くことは重要な発達の節目です。" },
-  // Safety
+  { word: "milestone", phonetic: "/ˈmaɪlstəʊn/", ja: "発達の節目", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "Walking is an important milestone.", exampleJa: "歩くことは重要な発達の節目です。" },
+  { word: "empathy", phonetic: "/ˈempəθi/", ja: "共感", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "Show empathy when a child is upset.", exampleJa: "子どもが悲しんでいる時は共感を示しましょう。" },
+  { word: "encourage", phonetic: "/ɪnˈkʌrɪdʒ/", ja: "励ます", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "We encourage children to try new things.", exampleJa: "子どもたちが新しいことに挑戦するよう励まします。" },
+  { word: "self-regulation", phonetic: "/self ˌreɡjuˈleɪʃən/", ja: "自己調整", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "We help children develop self-regulation skills.", exampleJa: "子どもの自己調整能力の発達を支援します。" },
+  { word: "frustrated", phonetic: "/ˈfrʌstreɪtɪd/", ja: "イライラしている", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "He looks frustrated. Let's help him.", exampleJa: "イライラしているようです。助けてあげましょう。" },
+  { word: "calm down", phonetic: "/kɑːm daʊn/", ja: "落ち着く", cat: "感情サポート", catColor: "#E8DCFA", catText: "#6A3AAC", example: "Let's take a deep breath and calm down.", exampleJa: "深呼吸して落ち着きましょう。" },
+  // 安全・緊急
   { word: "first aid", phonetic: "/fɜːrst eɪd/", ja: "応急処置", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "I need to apply first aid right away.", exampleJa: "すぐに応急処置が必要です。" },
   { word: "emergency contact", phonetic: "/ɪˈmɜːrdʒənsi ˈkɒntækt/", ja: "緊急連絡先", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "Please provide an emergency contact number.", exampleJa: "緊急連絡先を教えてください。" },
   { word: "evacuation drill", phonetic: "/ɪˌvækjuˈeɪʃən drɪl/", ja: "避難訓練", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "We practice an evacuation drill each month.", exampleJa: "毎月避難訓練をしています。" },
   { word: "supervision", phonetic: "/ˌsuːpərˈvɪʒən/", ja: "見守り・監督", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "Children need constant supervision near water.", exampleJa: "水の近くでは常に見守りが必要です。" },
   { word: "injury", phonetic: "/ˈɪndʒəri/", ja: "けが", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "We had a minor injury on the playground.", exampleJa: "遊び場で軽いけががありました。" },
+  { word: "incident report", phonetic: "/ˈɪnsɪdənt rɪˈpɔːrt/", ja: "事故報告書", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "I need to fill out an incident report.", exampleJa: "事故報告書に記入する必要があります。" },
+  { word: "fever", phonetic: "/ˈfiːvər/", ja: "発熱", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "She has a fever of 38 degrees.", exampleJa: "38度の熱があります。" },
+  { word: "ambulance", phonetic: "/ˈæmbjələns/", ja: "救急車", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "We called an ambulance right away.", exampleJa: "すぐに救急車を呼びました。" },
+  { word: "safety rules", phonetic: "/ˈseɪfti ruːlz/", ja: "安全ルール", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "Let's go over the safety rules together.", exampleJa: "一緒に安全ルールを確認しましょう。" },
+  { word: "head count", phonetic: "/hed kaʊnt/", ja: "人数確認", cat: "安全・緊急", catColor: "#CCFAED", catText: "#025E46", example: "Always do a head count before leaving.", exampleJa: "出発前に必ず人数確認をしましょう。" },
 ];
 
 const QUIZ_DATA = [
-  { sentence: "It's time to change your ___.", blank: "diaper", options: ["diaper", "bottle", "blanket", "pillow"], explanation: "diaper（おむつ）を使います。" },
-  { sentence: "Let's gather for ___ time!", blank: "circle", options: ["story", "circle", "nap", "snack"], explanation: "circle time（集まりの時間）は朝や活動の区切りによく使います。" },
-  { sentence: "___ time is at three o'clock.", blank: "Snack", options: ["Nap", "Bath", "Snack", "Circle"], explanation: "snack time（おやつの時間）です。" },
-  { sentence: "Please wash your ___ before eating.", blank: "hands", options: ["face", "hands", "feet", "hair"], explanation: "wash your hands（手を洗う）は食前の基本フレーズです。" },
-  { sentence: "She shows some separation ___ at drop-off.", blank: "anxiety", options: ["anxiety", "happiness", "energy", "interest"], explanation: "separation anxiety（分離不安）は登園時によく見られます。" },
-  { sentence: "We practice an evacuation ___ each month.", blank: "drill", options: ["game", "drill", "walk", "test"], explanation: "evacuation drill（避難訓練）を毎月行います。" },
-  { sentence: "He threw a ___ when it was time to go.", blank: "tantrum", options: ["tantrum", "ball", "toy", "smile"], explanation: "tantrum（癇癪）は子どもの感情表現のひとつです。" },
-  { sentence: "Please inform us of any food ___.", blank: "allergies", options: ["preferences", "allergies", "choices", "habits"], explanation: "food allergies（食物アレルギー）の確認は大切です。" },
-  { sentence: "Children need constant ___ near water.", blank: "supervision", options: ["supervision", "encouragement", "permission", "exercise"], explanation: "supervision（見守り）は安全管理の基本です。" },
-  { sentence: "Walking is an important ___.", blank: "milestone", options: ["activity", "milestone", "problem", "challenge"], explanation: "milestone（発達の節目）で子どもの成長を把握します。" },
+  // 日常ケア
+  { cat: "日常ケア", sentence: "It's time to change your ___.", blank: "diaper", options: ["diaper", "bottle", "blanket", "pillow"], explanation: "diaper（おむつ）を使います。" },
+  { cat: "日常ケア", sentence: "Please wash your ___ before eating.", blank: "hands", options: ["face", "hands", "feet", "hair"], explanation: "wash your hands（手を洗う）は食前の基本フレーズです。" },
+  { cat: "日常ケア", sentence: "Time to get ___, everyone!", blank: "dressed", options: ["dressed", "ready", "up", "clean"], explanation: "get dressed（着替える）は朝のルーティンで使います。" },
+  { cat: "日常ケア", sentence: "Let's put on ___ before going outside.", blank: "sunscreen", options: ["sunscreen", "shoes", "hats", "coats"], explanation: "sunscreen（日焼け止め）は外遊び前に使います。" },
+  { cat: "日常ケア", sentence: "___ time is at eight thirty.", blank: "Drop-off", options: ["Drop-off", "Pick-up", "Nap", "Snack"], explanation: "Drop-off time（登園時間）です。" },
+  { cat: "日常ケア", sentence: "Let's brush our ___ after lunch.", blank: "teeth", options: ["teeth", "hair", "hands", "shoes"], explanation: "brush teeth（歯を磨く）は食後に行います。" },
+  // 遊び・活動
+  { cat: "遊び・活動", sentence: "Let's gather for ___ time!", blank: "circle", options: ["story", "circle", "nap", "snack"], explanation: "circle time（集まりの時間）は活動の区切りによく使います。" },
+  { cat: "遊び・活動", sentence: "Today we're doing finger ___.", blank: "painting", options: ["painting", "drawing", "playing", "making"], explanation: "finger painting（フィンガーペイント）です。" },
+  { cat: "遊び・活動", sentence: "Remember to ___ turns on the slide.", blank: "take", options: ["take", "make", "have", "give"], explanation: "take turns（順番を守る）は社会性を育てる大切な表現です。" },
+  { cat: "遊び・活動", sentence: "It's time to ___ up the toys.", blank: "clean", options: ["clean", "pick", "put", "set"], explanation: "clean up（片付ける）は活動後の声かけに使います。" },
+  { cat: "遊び・活動", sentence: "They love ___ play in the kitchen corner.", blank: "role", options: ["role", "free", "outdoor", "group"], explanation: "role play（ごっこ遊び）は想像力を育てます。" },
+  { cat: "遊び・活動", sentence: "Can you build a tower with the ___?", blank: "blocks", options: ["blocks", "cards", "sticks", "cups"], explanation: "building blocks（積み木）です。" },
+  // 食事・給食
+  { cat: "食事・給食", sentence: "___ time is at three o'clock.", blank: "Snack", options: ["Nap", "Bath", "Snack", "Circle"], explanation: "snack time（おやつの時間）です。" },
+  { cat: "食事・給食", sentence: "Please inform us of any food ___.", blank: "allergies", options: ["preferences", "allergies", "choices", "habits"], explanation: "food allergies（食物アレルギー）の確認は大切です。" },
+  { cat: "食事・給食", sentence: "Please ___ your food slowly.", blank: "chew", options: ["chew", "eat", "taste", "bite"], explanation: "chew（噛む）はゆっくり食べる指導に使います。" },
+  { cat: "食事・給食", sentence: "Please put on your ___ before eating.", blank: "bib", options: ["bib", "hat", "smock", "gloves"], explanation: "bib（食事エプロン）は食事前につけます。" },
+  { cat: "食事・給食", sentence: "Don't forget to drink ___.", blank: "water", options: ["water", "juice", "milk", "soup"], explanation: "drink water（水を飲む）は水分補給の基本フレーズです。" },
+  // 感情サポート
+  { cat: "感情サポート", sentence: "She shows some separation ___ at drop-off.", blank: "anxiety", options: ["anxiety", "happiness", "energy", "interest"], explanation: "separation anxiety（分離不安）は登園時によく見られます。" },
+  { cat: "感情サポート", sentence: "He threw a ___ when it was time to go.", blank: "tantrum", options: ["tantrum", "ball", "toy", "smile"], explanation: "tantrum（癇癪）は子どもの感情表現のひとつです。" },
+  { cat: "感情サポート", sentence: "Walking is an important ___.", blank: "milestone", options: ["activity", "milestone", "problem", "challenge"], explanation: "milestone（発達の節目）で子どもの成長を把握します。" },
+  { cat: "感情サポート", sentence: "Let's take a deep breath and ___ down.", blank: "calm", options: ["calm", "sit", "slow", "quiet"], explanation: "calm down（落ち着く）は感情サポートの基本フレーズです。" },
+  { cat: "感情サポート", sentence: "He looks ___. Let's help him.", blank: "frustrated", options: ["frustrated", "happy", "tired", "excited"], explanation: "frustrated（イライラしている）は子どもの感情を表す言葉です。" },
+  // 安全・緊急
+  { cat: "安全・緊急", sentence: "We practice an evacuation ___ each month.", blank: "drill", options: ["game", "drill", "walk", "test"], explanation: "evacuation drill（避難訓練）を毎月行います。" },
+  { cat: "安全・緊急", sentence: "Children need constant ___ near water.", blank: "supervision", options: ["supervision", "encouragement", "permission", "exercise"], explanation: "supervision（見守り）は安全管理の基本です。" },
+  { cat: "安全・緊急", sentence: "Always do a head ___ before leaving.", blank: "count", options: ["count", "check", "list", "call"], explanation: "head count（人数確認）は外出前の安全確認です。" },
+  { cat: "安全・緊急", sentence: "I need to fill out an incident ___.", blank: "report", options: ["report", "form", "note", "sheet"], explanation: "incident report（事故報告書）は事故後に記入します。" },
+  { cat: "安全・緊急", sentence: "She has a ___ of 38 degrees.", blank: "fever", options: ["fever", "cold", "cough", "pain"], explanation: "fever（発熱）は体調不良のサインです。" },
 ];
 
 const PRON_DATA = [
@@ -1063,14 +1111,20 @@ function filterDict() { renderDict(); }
 
 // ===== QUIZ =====
 function initQuiz() {
-  const cats = ["すべて", ...new Set(QUIZ_DATA.map(() => 'すべて'))];
-  document.getElementById('quiz-cats').innerHTML = `
-    <div class="cat-tab active" onclick="startQuiz()">全問題</div>
-  `;
+  const cats = ["すべて", ...new Set(QUIZ_DATA.map(q => q.cat))];
+  document.getElementById('quiz-cats').innerHTML = cats.map(c =>
+    `<div class="cat-tab ${c === quizCat ? 'active' : ''}" onclick="setQuizCat('${c}')">${c}</div>`
+  ).join('');
+  startQuiz();
+}
+function setQuizCat(c) {
+  quizCat = c;
+  document.querySelectorAll('#quiz-cats .cat-tab').forEach(t => t.classList.toggle('active', t.textContent === c));
   startQuiz();
 }
 function startQuiz() {
-  quizData = [...QUIZ_DATA].sort(() => Math.random() - 0.5);
+  const pool = quizCat === 'すべて' ? QUIZ_DATA : QUIZ_DATA.filter(q => q.cat === quizCat);
+  quizData = [...pool].sort(() => Math.random() - 0.5);
   quizIndex = 0; quizScore = 0; quizAnswered = false;
   document.getElementById('quiz-result').style.display = 'none';
   renderQuiz();
@@ -1149,6 +1203,7 @@ function renderFC() {
   document.getElementById('fc-phonetic').textContent = d.phonetic;
   document.getElementById('fc-ja').textContent = d.ja;
   document.getElementById('fc-example').textContent = d.example;
+  document.getElementById('fc-example-ja').textContent = d.exampleJa;
   document.getElementById('fc-current').textContent = fcIndex + 1;
   document.getElementById('fc-total').textContent = fcData.length;
   document.getElementById('fc-inner').classList.remove('flipped');
