@@ -1260,34 +1260,24 @@ async function generatePhrases() {
   }
 ]`;
 
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await res.json();
-    const text = data.content.map(i => i.text || '').join('');
-    const clean = text.replace(/```json|```/g, '').trim();
-    const phrases = JSON.parse(clean);
-    
-    document.getElementById('ai-result-title').textContent = `「${scene}」で使えるフレーズ`;
-    phrasesEl.innerHTML = phrases.map(p => `
-      <div class="ai-phrase-item">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-          <div style="flex:1;">
-            <div class="ai-phrase-en">${p.en}</div>
-            <div class="ai-phrase-ja">${p.ja}</div>
-            <div class="ai-phrase-note">💡 ${p.note}</div>
-          </div>
-          <button class="speak-btn" onclick="speak('${p.en.replace(/'/g,"\\'")}')">🔊</button>
-        </div>
-      </div>
-    `).join('');
+ try {
+    navigator.clipboard.writeText(prompt);
+    phrasesEl.innerHTML = `
+      <div style="background:var(--primary-light);border-radius:12px;padding:1.5rem;text-align:left;">
+        <p style="font-weight:700;color:var(--primary-dark);margin-bottom:0.8rem;">✅ プロンプトをコピーしました！</p>
+        <p style="font-size:0.9rem;margin-bottom:0.5rem;">次の手順でフレーズを生成できます：</p>
+        <ol style="font-size:0.9rem;line-height:2;">
+          <li><a href="https://claude.ai" target="_blank" style="color:var(--primary-dark);">claude.ai</a> を新しいタブで開く</li>
+          <li>チャット欄に <kbd>Cmd + V</kbd> で貼り付け</li>
+          <li>送信してフレーズを受け取る</li>
+          <li>このページに戻って内容を確認する</li>
+        </ol>
+        <p style="font-size:0.85rem;color:var(--text3);margin-top:0.8rem;">コピーされたプロンプト：</p>
+        <p style="font-size:0.85rem;color:var(--text2);font-style:italic;">${prompt}</p>
+      </div>`;
+    resultEl.classList.add('show');
+    return;
+    const text = '';
     window._aiPhrases = phrases;
   } catch (e) {
     phrasesEl.innerHTML = `<p style="color:#E24B4A;text-align:center;">エラーが発生しました。もう一度お試しください。</p>`;
